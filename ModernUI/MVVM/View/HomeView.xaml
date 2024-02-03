@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="ModernUI.MVVM.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ModernUI.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Discover"
+                   Foreground="White"
+                   FontSize="28"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0, 20" 
+                   />
+
+            <StackPanel Orientation="Horizontal">
+                <Border Width="400" Height="200">
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="1,2">
+                            <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                            <GradientStop Color="#3aa0ff" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="15" RadiusY="15"
+                                       Rect="0,0,400,200"/>
+                    </Border.Clip>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="263*"/>
+                            <ColumnDefinition Width="137*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.ColumnSpan="2">
+                            <TextBlock Margin="5, 5, 5, 5" 
+                                   Text="World Leader&#x0a;In Global Finance"
+                                   Foreground="White"
+                                   FontSize="28" Grid.Column="2"
+                                   />
+
+                            <TextBlock Margin="5, 5, 5, 5" 
+                                   Text="Get Started"
+                                   Foreground="White"
+                                   FontSize="28"/>
+
+
+                        </StackPanel>
+
+
+                        <Image Width="120" Height="120"
+                                   VerticalAlignment="Bottom"
+                                  HorizontalAlignment="Right"
+                                   Source="/Images/lightbulb.png" 
+                                   Margin="10,70,7,0" Grid.Column="1" 
+                                   Name="picture"
+                                       
+                                   />
+
+
+
+
+
+
+                    </Grid>
+                </Border>
+
+                <Border Width="200" Height="200" CornerRadius="10" Margin="10">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0"
+                          EndPoint="1,2">
+                            <GradientStop Color="#FFFFBA5B" Offset="0.0"/>
+                            <GradientStop Color="#FF0C1925" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="Transparent">
+
+        </StackPanel>
+    </Grid>
+</UserControl>

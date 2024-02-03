@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="ModernUI.MVVM.View.BotView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ModernUI.MVVM.View"
+             xmlns:viewModel="clr-namespace:ModernUI.MVVM.Viewmodel"
+             xmlns:model="clr-namespace:ModernUI.MVVM.Model"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             >
+
+    <UserControl.DataContext>
+        <viewModel:BotViewModel></viewModel:BotViewModel>
+    </UserControl.DataContext>
+    <StackPanel>
+        <TextBlock Text="Bot" FontSize="22" 
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   Margin="10, 10,10,10"/>
+        <StackPanel Orientation="Horizontal">
+            <Border  Width="350" Height="200" Margin="20,0,0,0">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                     EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#3aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="20" RadiusY="20"
+                                       Rect="0, 0, 350, 200"/>
+                </Border.Clip>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="5, 10, 0, 0">
+                        <TextBlock Margin="5, 5, 5, 5" 
+                               Text="TwitchName"
+                               Foreground="White"
+                               FontSize="24" Grid.Column="0" Grid.Row="0"/>
+
+                        <TextBox 
+                                 Name="TwitchTextBox"
+                                 Text="{Binding TwitchName}"
+                                 Style="{StaticResource ModernTextBox}"
+                                 Height="25" Width="175" 
+                             TextChanged="TwitchTextBox_TextChanged"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Margin="5, 10, 0, 0">
+                        
+                    <TextBlock Margin="5, 5, 5, 5" 
+                               Text="Token"
+                               Foreground="White"
+                               FontSize="24"/>
+
+                    <TextBox  
+                             Name="TokenTextBox"
+                             Height="25" Width="175" 
+                        Text="{Binding Token}"
+                        
+                         TextChanged="TokenTextBox_TextChanged"/>
+
+                        <Button Content="Enter"
+                                     Height="35"
+                                     Foreground="White"
+                                     FontSize="15"
+                                Margin="0, 5, 0, 0"
+                                Command="{Binding botCommand}"
+                                     Style="{StaticResource ButtonTheme}"/>
+                        
+
+                    </StackPanel>
+
+                    
+                </Grid>
+                
+
+                
+            </Border>
+
+
+            <Border  Width="350" Height="200" Margin="50, 0,0,0">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+         EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#3aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="20" RadiusY="20"
+                           Rect="0, 0, 350, 200"/>
+                </Border.Clip>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="5, 10, 0, 0" Orientation="Horizontal">
+                        <TextBlock Margin="5, 5, 5, 5" 
+                                   Text="TwitchName"
+                                   Name="TwitchTextBlock"
+                                   Foreground="White"
+                                   FontSize="24" Grid.Column="0" Grid.Row="0"/>
+
+                        <TextBlock Margin="5, 5, 5, 5" 
+                                   Text="{Binding TwitchName}"
+                                   
+                                   Foreground="White"
+                                   FontSize="24" Grid.Column="0" Grid.Row="0"/>
+
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Margin="5, 0, 0, 0" Orientation="Horizontal">
+
+                        <TextBlock Margin="5, 5, 5, 5" 
+                                   Name="TokenTextBlock"
+                                   Text="Token:"
+                                   Foreground="White"
+                                   FontSize="24"/>
+
+                        <TextBlock Margin="5, 5, 5, 5" 
+                                   Name="TokenText"
+                                   Text="{Binding Token}"
+                                   Foreground="White"
+                                   FontSize="24"/>
+
+
+
+
+                    </StackPanel>
+
+
+                </Grid>
+
+
+
+            </Border>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>
