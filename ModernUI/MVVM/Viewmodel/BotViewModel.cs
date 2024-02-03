@@ -46,6 +46,9 @@ namespace ModernUI.MVVM.Viewmodel
             }
         }
 
+
+
+        //Some comment :)
         public BotViewModel()
         {
             botCommand = new RelayCommand(Change, CanClick);
