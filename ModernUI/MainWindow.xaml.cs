@@ -1,5 +1,6 @@
 ﻿//using ModernUI.MVVM.Viewmodel;
 using ModernUI.MVVM.Viewmodel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,7 @@ namespace ModernUI
             //var mainViewModel = new MainViewModel();
             //this.DataContext = mainViewModel;
             //Will show stuff when app is running but not in designer :(
+            
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -44,6 +46,7 @@ namespace ModernUI
             {
                 this.DragMove();
             }
+            Trace.WriteLine("HO");
 
         }
 

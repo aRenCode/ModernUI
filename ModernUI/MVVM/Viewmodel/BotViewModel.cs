@@ -61,8 +61,9 @@ namespace ModernUI.MVVM.Viewmodel
 
         private void Change(object obj)
         {
-            BotManager.SetBoth(Token, TwitchName);
             
+            BotManager.SetBoth(Token, TwitchName);
+            BotManager.Connect(true);
             
         }
     }
