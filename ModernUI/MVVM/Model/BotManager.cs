@@ -106,9 +106,12 @@ namespace ModernUI.MVVM.Model
                 ColorValue = e.ChatMessage.ColorHex
             };
 
-            
-            Bot.Messages.Add(chatMsg2);
-            
+
+            //Bot.Messages.Add(chatMsg2);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Bot.Messages.Add(chatMsg2);
+            });
 
             Trace.WriteLine(Bot.Messages.Count);
             Trace.WriteLine(chatMsg2.Username);
