@@ -106,7 +106,7 @@ namespace ModernUI.MVVM.Model
                 ColorValue = e.ChatMessage.ColorHex
             };
 
-
+            //sadasd
             //Bot.Messages.Add(chatMsg2);
             Application.Current.Dispatcher.Invoke(() =>
             {
