@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ModernUI.MVVM.View;
+using System.Collections.ObjectModel;
 
 namespace ModernUI.MVVM.Viewmodel
 {
      class BotViewModel : ObservableObject
     {
+        public BotManager BotManager = new BotManager();
+
 
         public ICommand botCommand { get; set; }
 

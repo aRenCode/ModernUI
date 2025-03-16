@@ -4,11 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModernUI.MVVM.View"
+             xmlns:data ="clr-namespace:ModernUI.MVVM.Model"
+             xmlns:msg ="clr-namespace:ModernUI.Classes"
              mc:Ignorable="d" 
              d:DesignHeight="525" 
              d:DesignWidth="720">
+    <UserControl.DataContext>
+        <data:BotManager></data:BotManager>
+    </UserControl.DataContext>
+    
     <Grid>
-        
-            
+        <ListBox Background="Beige" Name ="MessageListBox" ItemsSource="{Binding Messages, Mode=TwoWay}" Margin="10,10,10,10" SelectedIndex="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type msg:ChatMessage}">
+                    <StackPanel Orientation="Horizontal" Background="AliceBlue">
+                <TextBlock Text="{Binding Username}" Foreground="{Binding ColorValue}" Margin="0,0,10,0">
+                 
+                </TextBlock>
+                <TextBlock Text="{Binding Message}"/>
+            </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+
+        </ListBox>
     </Grid>
 </UserControl>

@@ -1,61 +1,129 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ModernUI.Classes;
+using ModernUI.Core;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using TwitchLib.Client.Events;
+using TwitchLib.Client.Models;
 
 namespace ModernUI.MVVM.Model
 {
-    class BotManager
+    class BotManager : ObservableObject
     {
-        public static Bot bot;
+        
+        public Classes.ChatMessage chatMsg { get; set; } = new Classes.ChatMessage();
+
+        private  ObservableCollection<Classes.ChatMessage> messages = new ObservableCollection<Classes.ChatMessage> {};
+
+        public  ObservableCollection<Classes.ChatMessage> Messages
+        {
+            get { return Bot.Messages; }
+            set
+            {
+                messages = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         // Value setters and getters
-        public static void SetBoth(string token, string twitchName) {
-            bot = new Bot(twitchName, token);
+        public  void SetBoth(string token, string twitchName) {
+            Bot.TwitchName = twitchName;
+            Bot.Token = token;
+            Bot.creds = new ConnectionCredentials(Bot.TwitchName, Bot.Token);
+            //bot = new Bot(twitchName, token);
         }
 
-        public static void SetToken(string token) {bot.Token = token; }
+        public  void SetToken(string token) {Bot.Token = token; }
 
-        public static void SetTwitchName(string twichName) { bot.TwitchName = twichName; }
-        public static void ChangeToken(string newToken) => bot.Token = newToken;
+        public void SetTwitchName(string twichName) { Bot.TwitchName = twichName; }
+        public  void ChangeToken(string newToken) => Bot.Token = newToken;
 
-        public static string GetToken() =>  bot.Token;
+        public string GetToken() =>  Bot.Token;
 
-        public static void ChangeTwitchName(string newName) => bot.TwitchName = newName;
+        public void ChangeTwitchName(string newName) => Bot.TwitchName = newName;
 
-        public static string GetTwitchName() => bot.TwitchName;
+        public  string GetTwitchName() => Bot.TwitchName;
 
 
 
         //Connection methods
 
-        public static void Connect(bool logging)
+        public void Connect(bool logging)
         {
             
-            bot.client.Initialize(bot.creds, GetTwitchName());
+            Bot.client.Initialize(Bot.creds, GetTwitchName());
            
-
+            
             if (logging)
-                bot.client.OnLog += Client_Log;
+                Bot.client.OnLog += Client_Log;
 
-            bot.client.Connect();
+            Bot.client.OnConnected += Client_OnConnected;
+
+            Bot.client.OnMessageReceived += Client_OnMessageReceived;
+            Bot.client.Connect();
+
+            
+
+           
+            
         }
 
-        private static void Client_Log(object? sender, OnLogArgs e)
+        private void Client_OnMessageReceived1(object? sender, OnMessageReceivedArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Client_Log(object? sender, OnLogArgs e)
         {
             Trace.WriteLine(e.Data);
         }
 
-        public static void Disonnect()
+        public void Disonnect()
         {
-            bot.client.Disconnect();
+            Bot.client.Disconnect();
         }
+
+
+      
+
+
+        private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
+        {
+            var chatMsg2 = new Classes.ChatMessage
+            {
+                Username = $"{e.ChatMessage.DisplayName}: ",
+                Message = e.ChatMessage.Message,
+                ColorValue = e.ChatMessage.ColorHex
+            };
+
+            
+            Bot.Messages.Add(chatMsg2);
+            
+
+            Trace.WriteLine(Bot.Messages.Count);
+            Trace.WriteLine(chatMsg2.Username);
+
+            foreach (var chatMsg in Bot.Messages)
+                Trace.WriteLine(chatMsg.Message);
+            OnPropertyChanged("Messages");
+            
+        }
+
+        private void Client_OnConnected(object sender, OnConnectedArgs e)
+        {
+            Bot.client.SendMessage(Bot.client.JoinedChannels.FirstOrDefault(), "Wassup!");
+        }
+
 
 
 

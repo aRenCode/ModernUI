@@ -61,6 +61,7 @@
                              Height="50"
                              Foreground="White"
                              FontSize="18"
+                             Command="{Binding ChatViewCommand}"
                              Style="{StaticResource MenuButtonTheme}"/>
                 
                 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,20 +9,33 @@ using TwitchLib.Client.Models;
 
 namespace ModernUI.MVVM.Model
 {
-    public class Bot
+    public static class Bot
     {
 
 
-        public ConnectionCredentials creds;
+        public static ConnectionCredentials creds;
 
-        public TwitchClient client = new TwitchClient();
+        public static TwitchClient client = new TwitchClient();
+
+        private static ObservableCollection<Classes.ChatMessage> messages = new ObservableCollection<Classes.ChatMessage> { 
+        new Classes.ChatMessage()
+        };
+
+        public static ObservableCollection<Classes.ChatMessage> Messages
+        {
+            get { return messages; }
+            set
+            {
+                messages = value;
+            }
+        }
 
 
         //public string TwitchName { get; set; }
 
         private static string name { get; set; } //Connection creds only use statics
 
-        public string TwitchName
+        public static string TwitchName
         {
             get { return name; }
             set { name = value; }
@@ -30,7 +44,7 @@ namespace ModernUI.MVVM.Model
 
         private static string token { get; set; } //Connection creds only use statics
 
-        public string Token
+        public static string Token
         {
             get { return token; }
             set { token = value; }
@@ -39,13 +53,16 @@ namespace ModernUI.MVVM.Model
         //public string Token { get; set; }
 
 
-        public Bot(string name, string token)
+        /*
+        public static Bot(string name, string token)
         { 
-         this.TwitchName = name;
-         this.Token = token;
+         TwitchName = name;
+         Token = token;
          creds = new ConnectionCredentials(name, token);
          
-        }
+        }*/
         
+
+     
     }
 }

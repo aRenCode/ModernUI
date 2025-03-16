@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ModernUI.Classes
 {
-    class ChatMessage
+    public class ChatMessage
     {
-		private string username;
+		private string username = "placeholder";
 
 		public string Username
 		{
@@ -16,7 +16,7 @@ namespace ModernUI.Classes
 			set { username = value; }
 		}
 
-        private string message;
+        private string message = "placeholder";
 
         public string Message
         {
@@ -25,13 +25,15 @@ namespace ModernUI.Classes
         }
 
 
-        private string colorValue;
+        private string colorValue = "red";
 
         public string ColorValue
         {
             get { return this.colorValue; }
             set { colorValue = value; }
         }
+
+        public ChatMessage() { }
 
     }
 }

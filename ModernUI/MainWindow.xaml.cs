@@ -46,7 +46,7 @@ namespace ModernUI
             {
                 this.DragMove();
             }
-            Trace.WriteLine("HO");
+            //Trace.WriteLine("HO");
 
         }
 

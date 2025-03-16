@@ -21,6 +21,12 @@
             <DataTemplate DataType="{x:Type viewModel:BotViewModel}">
                 <view:BotView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ChatViewModel}">
+                <view:ChatView/>
+            </DataTemplate>
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

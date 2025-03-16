@@ -14,11 +14,15 @@ namespace ModernUI.MVVM.Viewmodel
 
         public RelayCommand BotViewCommand { get; set; }
 
+        public RelayCommand ChatViewCommand { get; set; }
+
        
 
         public HomeViewModel HomeVM { get; set; }
 
         public BotViewModel BotVM { get; set; }
+
+        public ChatViewModel ChatVM { get; set; }
 
         private object _currentView;
 
@@ -32,6 +36,7 @@ namespace ModernUI.MVVM.Viewmodel
         {
             HomeVM = new HomeViewModel();
             BotVM = new BotViewModel();
+            ChatVM = new ChatViewModel();
             CurrentView = HomeVM;
 
             HomeViewCommand = new RelayCommand(x => { 
@@ -40,6 +45,11 @@ namespace ModernUI.MVVM.Viewmodel
 
             BotViewCommand = new RelayCommand(x => {
                 CurrentView = BotVM;
+            });
+
+            ChatViewCommand = new RelayCommand(x =>
+            {
+                CurrentView = ChatVM;
             });
         }
     }
